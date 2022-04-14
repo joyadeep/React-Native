@@ -6,7 +6,7 @@ const AddTask = ({todos,setTodos}) => {
   const[newtodo,setNewtodo]= useState('');
   const handleAdd=()=>{
     newtodo && 
-    setTodos([...todos,{todo:newtodo,id:Math.floor(Math.random()*9999)}])
+    setTodos([...todos,{todo:newtodo,id:Math.floor(Math.random()*9999),completed:false}])
     setNewtodo('');
   }
 

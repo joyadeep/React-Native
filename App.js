@@ -11,7 +11,6 @@ export default function App() {
      <Header/>
     <Tasklist todos={todos} setTodos={setTodos}/>
     <AddTask todos={todos} setTodos={setTodos} />
-    {/* {console.log(todos)} */}
     </SafeAreaView>
   );
 }
