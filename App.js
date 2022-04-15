@@ -8,7 +8,7 @@ export default function App() {
   const[todos,setTodos]=useState([]);
   return (
     <SafeAreaView style={styles.container}>
-     <Header/>
+     <Header todos={todos} setTodos={setTodos}/>
     <Tasklist todos={todos} setTodos={setTodos}/>
     <AddTask todos={todos} setTodos={setTodos} />
     </SafeAreaView>

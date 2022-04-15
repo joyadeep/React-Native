@@ -6,29 +6,38 @@ const Task = ({item,todos,setTodos}) => {
     const handleDelete=(id)=>{
         setTodos(todos.filter((item)=>item.id!==id))
     }
-    // const handlepress=(id)=>{
-        // setTodos(prevstate=>({
-        //     todos:prevstate.todos.map(
-        //         item=>item.id===id?{...item,completed:true}:item
-        //     )
-        // }))
-        // console.log(todos)
-    // }
+    const handlePress=(id)=>{
+       
+        let edited=todos.map((item)=>{
+            if(item.id===id)
+            {
+                // console.log(item)
+                return {...item,completed:true}
+            }
+            else{
+                // console.log("else wala")
+                return item
+            }
+        })
+        setTodos(edited);
+    }
     
   return (
-      <TouchableOpacity style={styles.taskContainer}    >
-        <Text style={styles.taskText}>{item.todo}</Text>
+      <TouchableOpacity style={ item.completed?styles.taskContainer:styles.taskContainerf} onPress={()=>{handlePress(item.id)}}    >
+        <Text style={ item.completed?styles.taskTextt:styles.taskText}>{item.todo}</Text>
         <View style={styles.buttons}>
-            <TouchableOpacity style={styles.edit}>
+            {!item.completed && <TouchableOpacity style={styles.edit}>
                 <Text style={styles.editText}>
                     <MaterialIcons name="edit" size={24} color="#55C2FF" />
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.delete} onPress={()=>{handleDelete(item.id)}} >
+}
+            { !item.completed && <TouchableOpacity style={styles.delete} onPress={()=>{handleDelete(item.id)}} >
                 <Text style={styles.deleteText}>
                 <MaterialCommunityIcons name="delete" size={24} color="#FF5555" />
                 </Text>
             </TouchableOpacity>
+}
         </View>
       </TouchableOpacity>
   )
@@ -38,6 +47,17 @@ export default Task
 
 const styles = StyleSheet.create({
     taskContainer:{
+        width:'95%',
+        alignSelf:'center',
+        paddingHorizontal:10,
+        backgroundColor:'#8DC994',
+        paddingVertical:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        borderRadius:5,
+        marginBottom:5,
+    },
+    taskContainerf:{
         width:'95%',
         alignSelf:'center',
         paddingHorizontal:10,
@@ -51,6 +71,10 @@ const styles = StyleSheet.create({
     taskText:{
         fontSize:23,
         maxWidth:'70%',
+    },
+    taskTextt:{
+        color:'#F7F7F7',
+        fontSize:23,
     },
     buttons:{
         flexDirection:'row',
